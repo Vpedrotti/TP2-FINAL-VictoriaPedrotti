@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Victoria Pedrotti | Linktree</title>
+    <link rel="icon" href="ICONOS/png fondo .ico" type="image/x-icon">
+    <style>
+        
+        :root {
+            --nude: #f5ebe0; 
+            --lila: #cdb4db; 
+            --lila-oscuro: #b598d0; 
+            --text: #333; 
+            --sombra-clara: rgba(0,0,0,0.08); 
+        }
+
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center; 
+            min-height: 100vh;
+            margin: 0;
+            background-image: url(IMAGENES/patitas\ 2.jpeg); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; 
+            color: var(--text);
+        }
+
+        header {
+            text-align: center;
+            padding: 20px 0;
+            margin-bottom: 20px; 
+        }
+
+        header img { 
+            width: 150px; 
+            height: 150px; 
+            border-radius: 50%; 
+            margin-top: 30px; 
+            margin-bottom: 25px; 
+            object-fit: cover; 
+            border: 4px solid white; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2); /
+        }
+
+        h1 {
+            color: white; 
+            font-size: 2.8em; 
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); 
+        }
+
+        h2 {
+            color: var(--lila-oscuro); 
+            font-size: 1.5em; 
+            margin-bottom: 30px;
+            text-decoration: none; 
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0; 
+            display: flex;
+            flex-direction: column; 
+            gap: 20px; 
+            width: 100%;
+            max-width: 400px; 
+            margin: 0 auto; 
+            padding: 0 20px; 
+        }
+
+        nav li {
+            width: 100%; 
+        }
+
+        nav a {
+            display: block; 
+            padding: 15px 20px; 
+            background-color: var(--lila); 
+            color: white; /
+            border-radius: 12px; 
+            font-size: 1.2em; 
+            font-weight: bold;
+            text-decoration: none;
+            box-shadow: 0 4px 10px var(--sombra-clara); 
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            text-align: center; 
+        }
+
+        nav a:hover {
+            background-color: var(--lila-oscuro);
+            transform: translateY(-3px); 
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        nav a:active {
+            background-color: var(--lila-oscuro);
+            transform: translateY(0);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .redes {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 25px; 
+            margin-top: 20px; 
+        }
+
+        .redes li {
+            display: inline-block; 
+        }
+
+        .redes img {
+            width: 45px; 
+            height: 45px;
+            border-radius: 50%; 
+            border: 2px solid white; 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15); 
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .redes img:hover {
+            transform: translateY(-3px) scale(1.05); 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+        }
+
+        footer {
+            background-color: var(--lila); 
+            text-align: center;
+            padding: 1.5rem; 
+            margin-top: auto; 
+            color: white; 
+            font-size: 0.9rem;
+            box-shadow: 0 -2px 8px var(--sombra-clara); 
+            width: 100%; 
+        }
+        
+        footer a {
+            color: white; 
+            text-decoration: underline;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: var(--lila-oscuro); 
+        }
+
+
+      
+        @media (max-width: 500px) {
+            h1 {
+                font-size: 2.2em;
+            }
+            h2 {
+                font-size: 1.2em;
+            }
+            header img {
+                width: 100px;
+                height: 100px;
+            }
+            nav ul {
+                max-width: 90%;
+                gap: 15px;
+            }
+            nav a {
+                padding: 12px 15px;
+                font-size: 1em;
+            }
+            .redes img {
+                width: 35px;
+                height: 35px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="IMAGENES/png fondo .ico" alt="Logo de Victoria Pedrotti">
+        <h1>Victoria Pedrotti</h1>
+        <h2>Mis páginas creadas</h2>
+        <ul class="redes">
+            <li> 
+                <a href="https://www.instagram.com/vicupedrotti?igsh=MWdtam0wdnMyaW9jaw==" target="_blank" aria-label="Instagram de Victoria Pedrotti">
+                    <img src="IMAGENES/instagram-logo-icon-free-png.webp" alt="Icono de Instagram">
+                </a>
+            </li>
+            <li> 
+                <a href="https://sanlorenzo.com.ar/" target="_blank" aria-label="Sitio web de San Lorenzo">
+                    <img src="IMAGENES/Picture1.png" alt="Icono de CASLA">
+                </a>
+            </li>
+            <li>
+                <a href="https://open.spotify.com/" target="_blank" aria-label="Spotify">
+                    <img src="IMAGENES/SPOTY LOGO.png" alt="Icono de Spotify"> 
+                </a>
+            </li>
+        </ul>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="1. inicio identikit.html">Identikit</a></li>
+            <li><a href="BLOG.HTML">Blog</a></li>
+            <li><a href="PORTFOLIO.html">Portfolio</a></li>
+        </ul>
+    </nav>
+
+    <footer>
+        <p>Desarrollado por Victoria Pedrotti | Estudiante de Administración de Empresas</p>
+        <a href="https://www.linkedin.com/in/victoria-pedrotti-" target="_blank">Mi perfil de LinkedIn</a>
+    </footer>
+</body>
+</html>
