@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería de Imágenes</title>
+    <link rel="icon" href="ICONOS/png fondo .ico" type="image/x-icon">
+    <style>
+        
+        :root {
+            --nude: #f5ebe0; 
+            --lila: #cdb4db; 
+            --lila-oscuro: #b598d0; 
+            --text: #333; 
+            --sombra-clara: rgba(0,0,0,0.08); 
+        }
+
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start; 
+            min-height: 100vh;
+            margin: 0;
+            background-color: var(--nude); 
+            color: var(--text);
+            scroll-behavior: smooth;
+        }
+
+        
+        header {
+            background-color: var(--lila);
+            padding: 0.5rem 0; 
+            box-shadow: 0 2px 8px var(--sombra-clara);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%; 
+            position: sticky; 
+            top: 0;
+            z-index: 1000; 
+        }
+
+        
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 0;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-size: 1.1rem;
+            padding: 0.3rem 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background-color: var(--lila-oscuro);
+        }
+        
+        
+        .page-section {
+            padding: 3rem 2rem;
+            max-width: 1000px;
+            margin: 2rem auto; 
+            background-color: white; 
+            border-radius: 12px;
+            box-shadow: 0 4px 15px var(--sombra-clara);
+            text-align: center; 
+            flex-grow: 1; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: flex-start; 
+        }
+
+        .page-section h2 {
+            font-size: 2.2rem;
+            color: var(--lila);
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .page-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--lila);
+            border-radius: 5px;
+        }
+
+        
+        .galeria {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 20px; 
+            width: 100%; 
+            max-width: 700px; 
+            margin-top: 2rem; 
+        }
+
+        .galeria div {
+            background-color: var(--nude); 
+            height: 280px; 
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); 
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .galeria div:hover {
+            transform: translateY(-5px); 
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); 
+            cursor: pointer;
+        }
+
+        .galeria img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            border-radius: 1rem;
+            transition: transform 0.3s ease; 
+        }
+
+        .galeria div:hover img {
+            transform: scale(1.05); 
+        }
+
+       
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.85); 
+            justify-content: center;
+            align-items: center;
+            z-index: 2000; 
+            animation: fadeIn 0.3s ease-out forwards; 
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-img {
+            max-width: 90vw;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 8px; 
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5); 
+            animation: zoomIn 0.3s ease-out forwards; 
+        }
+
+        
+        .lightbox-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 2100; 
+            padding: 1.2rem 1.8rem; 
+            cursor: pointer;
+            background-color: var(--lila); 
+            color: white; 
+            border: none;
+            border-radius: 50%; 
+            font-size: 1.5rem; 
+            line-height: 1; 
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+        }
+
+        .lightbox-btn:hover {
+            background-color: var(--lila-oscuro);
+            transform: translateY(-50%) scale(1.05); 
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        }
+        .lightbox-btn:active {
+            transform: translateY(-50%) scale(0.98);
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .lightbox-btn.prev {
+            left: 3vw;
+        }
+
+        .lightbox-btn.next {
+            right: 3vw;
+        }
+
+       
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+       
+        footer {
+            background-color: var(--lila);
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: auto; 
+            color: white;
+            font-size: 0.9rem;
+            box-shadow: 0 -2px 8px var(--sombra-clara);
+            width: 100%;
+        }
+
+        /* Media Queries para responsividad */
+        @media (max-width: 768px) {
+            header {
+                padding: 0.8rem 0;
+            }
+            nav {
+                flex-direction: column;
+                padding: 0.5rem 1rem;
+            }
+            .nav-links {
+                gap: 0.8rem;
+            }
+            .nav-links a {
+                font-size: 1rem;
+                padding: 0.2rem 0.8rem;
+            }
+
+            .page-section {
+                padding: 2rem 1rem;
+                margin: 1.5rem auto;
+            }
+
+            .page-section h2 {
+                font-size: 1.8rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .galeria {
+                grid-template-columns: repeat(1, 1fr); 
+                gap: 15px; /* Ajuste del gap */
+                margin-top: 1.5rem;
+            }
+            .galeria div {
+                height: 200px; 
+            }
+
+            .lightbox-btn {
+                padding: 0.8rem 1.2rem;
+                font-size: 1.2rem;
+            }
+            .lightbox-btn.prev {
+                left: 1vw;
+            }
+            .lightbox-btn.next {
+                right: 1vw;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="PORTFOLIO.html#sobre-mi">Sobre mí</a></li>
+                <li><a href="PORTFOLIO.html#proyectos">Proyectos</a></li>
+                <li><a href="PORTFOLIO.html#contacto">Contacto</a></li>
+                <li><a href="index.htm">Linktree</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="page-section">
+        <h2>Mi Galería de Imágenes</h2>
+        <section class="galeria"></section>
+    </div>
+
+    <div class="lightbox">
+        <button class="lightbox-btn prev">&lt;</button>
+        <img src="" alt="Imagen ampliada" class="lightbox-img">
+        <button class="lightbox-btn next">&gt;</button>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Victoria Pedrotti. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        // Define la ruta base de tus imágenes
+        const rutaBaseImagenes = 'IMAGENES/';
+
+        // Lista de los nombres exactos de tus archivos de imagen
+        const nombresImagenes = [
+            'MULAN ANIMADA.png',
+            'MULAN ANIME.png',
+            'MULAN DIBUJO.png',
+            'MULAN SIMPSON.png'
+        ];
+
+        const galeria = document.querySelector('.galeria');
+
+        // Cargar imágenes en la galería usando los nombres de la lista
+        nombresImagenes.forEach((nombre, index) => {
+            const div = document.createElement('div');
+            const img = document.createElement('img');
+            img.src = `${rutaBaseImagenes}${nombre}`;
+            // Crea un texto alt más limpio eliminando la extensión del archivo
+            img.alt = `Imagen ${index + 1}: ${nombre.split('.')[0]}`; 
+            div.appendChild(img);
+            galeria.appendChild(div);
+        });
+
+        // Lógica del lightbox
+        const lightbox = document.querySelector('.lightbox');
+        const lightboxImg = document.querySelector('.lightbox-img');
+        let currentIndex = 0;
+
+        // Obtener todas las imágenes de la galería (después de que se hayan creado)
+        const imagenes = Array.from(document.querySelectorAll('.galeria img'));
+
+        // Mostrar imagen en lightbox por índice
+        function mostrarImagen(idx) {
+            currentIndex = (idx + imagenes.length) % imagenes.length; // Asegura ciclo infinito
+            lightboxImg.src = imagenes[currentIndex].src;
+            lightboxImg.alt = imagenes[currentIndex].alt;
+        }
+
+        // Abrir lightbox y guardar índice actual
+        galeria.addEventListener('click', function (e) {
+            if (e.target.tagName === 'IMG') {
+                currentIndex = imagenes.indexOf(e.target);
+                mostrarImagen(currentIndex);
+                lightbox.classList.add('active');
+            }
+        });
+
+        // Cerrar lightbox al hacer clic en el fondo oscuro
+        lightbox.addEventListener('click', function (e) {
+            if (e.target === lightbox) { // Solo cierra si se hace clic directamente en el fondo
+                lightbox.classList.remove('active');
+                // Opcional: limpiar la imagen para liberar memoria
+                lightboxImg.src = ''; 
+                lightboxImg.alt = '';
+            }
+        });
+
+        // Navegación con botones (prev y next)
+        const prevBtn = document.querySelector('.lightbox-btn.prev');
+        const nextBtn = document.querySelector('.lightbox-btn.next');
+
+        prevBtn.addEventListener('click', function (e) {
+            e.stopPropagation(); // Evita que el clic en el botón cierre el lightbox
+            mostrarImagen(currentIndex - 1);
+        });
+
+        nextBtn.addEventListener('click', function (e) {
+            e.stopPropagation(); // Evita que el clic en el botón cierre el lightbox
+            mostrarImagen(currentIndex + 1);
+        });
+
+        // Cerrar lightbox con la tecla ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                lightbox.classList.remove('active');
+                lightboxImg.src = '';
+                lightboxImg.alt = '';
+            }
+        });
+
+    </script>
+</body>
+</html>

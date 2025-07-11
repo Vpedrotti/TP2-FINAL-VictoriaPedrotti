@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Victoria Pedrotti | Portfolio</title>
+    <link rel="icon" href="ICONOS/png fondo .ico" type="image/x-icon">
+    <style>
+        
+        :root {
+            --nude: #f5ebe0; 
+            --lila: #cdb4db; 
+            --lila-oscuro: #b598d0; 
+            --text: #333; 
+            --sombra-clara: rgba(0,0,0,0.08); 
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: var(--nude);
+            color: var(--text);
+            line-height: 1.6;
+            scroll-behavior: smooth; 
+        }
+
+        
+        header {
+            background-color: var(--lila);
+            padding: 0.5rem 0; 
+            box-shadow: 0 2px 8px var(--sombra-clara);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 0;
+        }
+
+        .nav-logo {
+            display: none; 
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-size: 1.1rem;
+            padding: 0.3rem 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background-color: var(--lila-oscuro);
+        }
+        
+        
+        section {
+            padding: 3rem 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-size: 2.2rem;
+            color: var(--lila);
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--lila);
+            border-radius: 5px;
+        }
+
+        
+        .proyecto {
+            background: white;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px var(--sombra-clara);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .proyecto:hover {
+            transform: translateY(-5px);
+        }
+
+        .proyecto h3 {
+            color: var(--lila-oscuro);
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .proyecto p {
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .proyecto a {
+            display: inline-block;
+            background-color: var(--lila);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .proyecto a:hover {
+            background-color: var(--lila-oscuro);
+        }
+
+        audio {
+            width: 100%;
+            margin-top: 0.5rem;
+        }
+
+        
+        .formulariocontacto {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px var(--sombra-clara);
+            max-width: 600px;
+            margin: 2rem auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .paraescribir {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .formulariocontacto label {
+            font-size: 1.1rem;
+            color: var(--lila-oscuro);
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .formulariocontacto input[type="text"],
+        .formulariocontacto textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid var(--lila);
+            border-radius: 8px;
+            font-size: 1rem;
+            color: var(--text);
+            background-color: var(--nude);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .formulariocontacto input[type="text"]:focus,
+        .formulariocontacto textarea:focus {
+            outline: none;
+            border-color: var(--lila-oscuro);
+            box-shadow: 0 0 0 3px rgba(205, 180, 219, 0.5);
+        }
+
+        .formulariocontacto textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .formulariocontacto .submit {
+            background-color: var(--lila);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            align-self: center;
+            width: fit-content;
+        }
+
+        .formulariocontacto .submit:hover {
+            background-color: var(--lila-oscuro);
+            transform: translateY(-2px);
+        }
+
+        
+        footer {
+            background-color: var(--lila);
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 3rem;
+            color: white;
+            font-size: 0.9rem;
+            box-shadow: 0 -2px 8px var(--sombra-clara);
+        }
+
+        
+        #sobre-mi .content-wrapper {
+            display: flex;
+            flex-direction: row;
+            gap: 40px;
+            align-items: center;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px var(--sombra-clara);
+        }
+
+        #sobre-mi img {
+            max-width: 40%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+            margin: 0;
+        }
+
+        #sobre-mi p {
+            flex: 1;
+            font-size: 1.1rem;
+            text-align: left;
+        }
+
+        
+        .navegacion-posts {
+            display: flex;
+            justify-content: center; 
+            margin-top: 3rem; 
+            margin-bottom: 2rem; 
+        }
+
+        .navegacion-posts a {
+            display: inline-block;
+            background-color: var(--lila);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1rem; 
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 2px 8px var(--sombra-clara); 
+        }
+
+        .navegacion-posts a:hover {
+            background-color: var(--lila-oscuro);
+            transform: translateY(-2px);
+        }
+
+        
+        @media (max-width: 768px) {
+            header {
+                padding: 0.8rem 0;
+            }
+            nav {
+                flex-direction: column;
+                padding: 0.5rem 1rem;
+            }
+            .nav-links {
+                gap: 0.8rem;
+            }
+            .nav-links a {
+                font-size: 1rem;
+                padding: 0.2rem 0.8rem;
+            }
+
+            section {
+                padding: 2rem 1rem;
+            }
+
+            section h2 {
+                font-size: 1.8rem;
+                margin-bottom: 1.5rem;
+            }
+
+            #sobre-mi .content-wrapper {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+
+            #sobre-mi img {
+                max-width: 60%;
+                margin-bottom: 1rem;
+            }
+
+            #sobre-mi p {
+                text-align: center;
+            }
+
+            .proyecto {
+                padding: 1.2rem;
+            }
+
+            .proyecto h3 {
+                font-size: 1.5rem;
+            }
+
+            .formulariocontacto {
+                padding: 1.5rem;
+            }
+
+            .formulariocontacto .submit {
+                width: 100%;
+            }
+
+            .navegacion-posts a {
+                width: calc(100% - 2rem); /
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#sobre-mi">Sobre mí</a></li>
+                <li><a href="#proyectos">Proyectos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="index.htm">Linktree</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="sobre-mi">
+        <h2>Sobre mí</h2>
+        <div class="content-wrapper">
+            <img src="IMAGENES/VICKY.png" alt="Foto de Victoria Pedrotti">
+            <p>Soy estudiante de Administración de Empresas y este es mi portfolio para la facultad. Aquí muestro algunos proyectos básicos de desarrollo web.
+                Me gusta que el diseño tiene cosas estructuradas como mi carrera, pero también tienes libertades para crear y fluir.</p>
+        </div>
+    </section>
+
+    <section id="proyectos">
+        <h2>Proyectos</h2>
+
+        <div class="proyecto">
+            <h3>Modal</h3>
+            <p>Un ejercicio de implementación de un modal con imagen, interactivo y responsivo.</p>
+            <a href="modal.html">Abrir Proyecto</a>
+        </div>
+
+        <div class="proyecto">
+            <h3>Galería</h3>
+            <p>Explora una galería de imágenes creadas con inteligencia artificial, con función de lightbox para una visualización ampliada.</p>
+            <a href="GALERIA.html">Abrir Proyecto</a>
+        </div>
+
+        <div class="proyecto">
+            <h3>Reproductor de Audios</h3>
+            <p>Un reproductor multimedia sencillo con cuatro pistas de audio distintas, mostrando control de reproducción con JavaScript.</p>
+            <a href="Botonera.html">Abrir Proyecto</a>
+        </div>
+    </section>
+
+    <section id="contacto">
+        <h2>Contacto</h2>
+        <p style="text-align: center;">¿Tienes alguna pregunta o propuesta? No dudes en escribirme:</p>
+        <form class="formulariocontacto">
+            <div class="paraescribir">
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" placeholder="Tu nombre.." class="inputcontacto">
+            </div>
+            <div class="paraescribir">
+                <label for="apellido">Apellido</label>
+                <input type="text" id="apellido" placeholder="Tu apellido.." class="inputcontacto">
+            </div>
+            <div class="paraescribir">
+                <label for="mensaje" class="mensaje">Mensaje</label>
+                <textarea id="mensaje" placeholder="Escribe tu mensaje aquí..." class="inputexto"></textarea>
+            </div>
+            <input type="submit" value="Enviar Mensaje" class="submit">
+        </form>
+    </section>
+
+    <div class="navegacion-posts">
+        <a href="#top">VOLVER ARRIBA</a> </div>
+
+    <footer>
+        <p>&copy; 2025 Victoria Pedrotti. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
